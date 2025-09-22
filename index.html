@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Validador QR</title>
+
+  <!-- &#9989; Importa la fuente Montserrat -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&amp;display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(to bottom, #fcf9f6, #f0e8dd);
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+    }
+
+.container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.banner {
+  background-color: #e7d6c4;
+  border: 1px solid #c4a67d;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 30px;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  font-weight: regular;
+  color: #2a2a2a;
+}
+
+.card {
+  border: 1px solid #b58952;
+  border-radius: 8px;
+  margin-bottom: 30px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  overflow: hidden;
+  background: linear-gradient(to bottom, #fcf9f6, #f0e8dd);
+  width: 100%;
+}
+
+.card-header {
+  background: linear-gradient(to bottom, #EEE9E2, #B38E5D);
+  padding: 10px 15px;
+  font-weight: bold;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  color: #3E3E3E;
+  font-size: 14px;
+}
+
+.card-body {
+  padding: 20px 25px;
+}
+
+.card-body p {
+  margin: 8px 0;
+  font-size: 16px;
+  color: #222;
+}
+
+.card-body strong {
+  display: inline-block;
+  width: 80px;
+  font-weight: bold;
+}
+
+.logo-container {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.logo-img {
+  display: inline-block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 80px;
+}
+
+.card.aviso {
+  background: linear-gradient(to bottom, #fcf9f6, #f0e8dd);
+  border: 1px solid #c9a874;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 20px;
+  box-shadow: 1px 2px 3px rgba(0,0,0,0.1);
+  text-align: left;
+  max-width: 670px;
+  box-sizing: border-box;
+}
+
+.aviso-content {
+  background: #BE9F76;
+  color: #1e1e1e;
+  font-weight: bold;
+  padding: 12px 15px;
+  border-radius: 8px;
+  font-size: 15px;
+  display: inline-block;
+}
+
+  </style>
+
+  
+
+<meta name="clear_all" content="1">
+</head>
+<body>
+  <div class="container">
+
+  <!-- Imagen centrada -->
+  <div class="logo-container">
+  <img src="https://siat.sat.gob.mx/app/qr/images/HACIENDA-SAT.jpg" alt="Hacienda SAT" class="logo-img">
+  </div>
+
+<div class="card aviso">
+  <div class="aviso-content">
+    La Opini&oacute;n que verific&oacute; fue emitida por el Servicio de Administraci&oacute;n Tributaria.
+  </div>
+</div>
+
+
+  <div class="card">
+    <div class="card-header">Datos Generales Enviados</div>
+    <div class="card-body">
+      <p><strong>Folio:</strong> 25ND9913292</p>
+      <p><strong>RFC:</strong> SGD230329M37</p>
+      <p><strong>Fecha:</strong> 22-07-2025</p>
+      <p><strong>Sentido:</strong> Positivo</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">Datos Generales Consultados</div>
+    <div class="card-body">
+      <p><strong>Folio:</strong> 25ND9913292</p>
+      <p><strong>RFC:</strong> SGD230329M37</p>
+      <p><strong>Fecha:</strong> 22-07-2025</p>
+      <p><strong>Sentido:</strong> Positivo</p>
+    </div>
+  </div>
+
+</div>
+
+
+  <script>
+    window.onload = function getUbicacion() {
+  console.log("entrando::::");
+  var requiereUbicacion = document.getElementById("ubicacionForm:iptRequiereUbicacion").value;
+  console.log("Requiere ubicacion ???? " + requiereUbicacion);
+  if (requiereUbicacion === "1") {
+    console.log('El servicio pertenece a Marbetes');
+    getVars();
+  }
+};
+
+function getVars() {
+  console.log('este es un mensaje de inicio de ubicacion ::::' );
+  if ("geolocation" in navigator) {
+    navigator.geolocation.getCurrentPosition(onSuccessGeolocating, onErrorGeolocating, {
+      enableHighAccuracy: true,
+      maximumAge: 5000
+    });
+  } else {
+    console.log("El Navegador no pudo acceder a la geolocalizacion!, Se mandan datos nulos");
+    setHiddenValue("0,0");
+  }
+}
+
+function onSuccessGeolocating(position) {
+  var ubicacion = position.coords.latitude + "," + position.coords.longitude;
+  console.log("Datos de ubicacion :: " + ubicacion);
+  setHiddenValue(ubicacion);
+}
+
+function onErrorGeolocating(error) {
+  var ubicacion = "0,0";
+  switch(error.code) {
+    case error.PERMISSION_DENIED:
+      console.log('ERROR: Se neg&oacute; el acceso a la geolocalizaci&oacute;n!');
+      break;
+    case error.POSITION_UNAVAILABLE:
+      console.log("ERROR: Problema para obtener la posici&oacute;n!");
+      break;
+    case error.TIMEOUT:
+      console.log("ERROR: Tiempo de espera agotado!");
+      break;
+    default:
+      console.log("ERROR: Problema desconocido!");
+      break;
+  }
+  setHiddenValue(ubicacion);
+}
+
+function setHiddenValue(ubicacion) {
+  console.log('Entrando setHiddenValue');
+  const iptUbicacion = document.getElementById("ubicacionForm:iptUbicacion");
+  iptUbicacion.value = ubicacion;
+}
+
+  </script>
+</body>
+</html>
