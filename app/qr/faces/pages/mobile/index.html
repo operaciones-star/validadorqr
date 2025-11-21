@@ -75,37 +75,41 @@
 
 .logo-container {
   text-align: center;
-  margin: 20px 0;
+  padding-bottom: 0px; /* margen inferior elegante */
 }
 
 .logo-img {
-  display: inline-block;
-  width: auto;
+  width: 20%; /* aquí controlas el tamaño en porcentaje */
   height: auto;
-  max-width: 100%;
-  max-height: 80px;
+  display: inline-block;
 }
 
 .card.aviso {
   background: linear-gradient(to bottom, #fcf9f6, #f0e8dd);
   border: 1px solid #c9a874;
   border-radius: 8px;
-  padding: 10px;
+  padding: 16px 13px;
   margin-bottom: 20px;
   box-shadow: 1px 2px 3px rgba(0,0,0,0.1);
   text-align: left;
-  max-width: 670px;
+  max-width: 710px;
   box-sizing: border-box;
 }
 
 .aviso-content {
   background: #BE9F76;
   color: #1e1e1e;
-  font-weight: bold;
-  padding: 12px 15px;
+  font-weight: 300;
+  padding: 0px 15px;
   border-radius: 8px;
   font-size: 15px;
-  display: inline-block;
+  display: flex;            /* ← aquí empieza la magia */
+  align-items: center;      /* ← centra vertical */
+  gap: 8px;                 /* opcional, separa imagen y texto */
+  
+  width: 100%;
+  box-sizing: border-box;
+  height: 33px;
 }
 
   </style>
@@ -113,13 +117,14 @@
   
 </head>
 <body>
-  <div class="container">
+  
 
   <!-- Imagen centrada -->
   <div class="logo-container">
   <img src="https://siat.sat.gob.mx/app/qr/images/HACIENDA-SAT.jpg" alt="Hacienda SAT" class="logo-img">
   </div>
-
+  
+<div class="container">
 <div class="card aviso">
   <div class="aviso-content">
 <img src="https://i.imgur.com/RD2FJAh.png">
@@ -209,7 +214,4 @@ function setHiddenValue(ubicacion) {
   </script>
 </body>
 </html>
-
-
-
 
