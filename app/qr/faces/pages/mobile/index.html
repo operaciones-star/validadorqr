@@ -61,7 +61,7 @@
 }
 
 .card-body {
-  padding: 20px 25px;
+  padding: 20px 15px;
 }
 
 .card-body p {
@@ -84,9 +84,11 @@
 }
 
 .logo-img {
-  width: 17%; /* aquí controlas el tamaño en porcentaje */
-  height: auto;
   display: inline-block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 80px;
 }
 
 .card.aviso {
@@ -96,7 +98,7 @@
   padding: 20px 13px;
   margin-bottom: 20px;
   text-align: left;
-  max-width: 730px;
+  max-width: 727px;
   box-sizing: border-box;
   box-shadow: 0 2px 3px rgba(190,159,118,0.7);
 }
@@ -105,16 +107,23 @@
   background: #BE9F76;
   color: #1e1e1e;
   font-weight: 550;
-  padding: 0px 15px;
   border-radius: 8px;
   font-size: 15px;
-  display: flex;            /* ← aquí empieza la magia */
-  align-items: center;      /* ← centra vertical */
-  gap: 8px;                 /* opcional, separa imagen y texto */
-  
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
   width: 100%;
   box-sizing: border-box;
-  height: 36px;
+
+  /* en lugar de height fija: */
+  padding: 8px 15px;
+  min-height: 38px;      /* opcional, solo para mantener la altura mínima */
+}
+
+.aviso-content img {
+  flex-shrink: 0;        /* que no se aplaste */
 }
 
   </style>
